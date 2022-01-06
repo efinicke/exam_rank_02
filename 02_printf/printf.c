@@ -6,16 +6,6 @@
 
 int ret;
 
-int     ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
 void    ft_putchar(char c)
 {
     write(1, &c, 1);
@@ -55,8 +45,8 @@ int     ft_printf(const char *str, ...)
     va_list(params);
     int i;
 
+	ret = 0;
     i = -1;
-    ret = 0;
     if (str == NULL)
         return (-1);
     va_start(params, str);
@@ -72,16 +62,10 @@ int     ft_printf(const char *str, ...)
             else if (str[i] == 'x')
                 ft_hexa_putnbr(va_arg(params, unsigned int), "0123456789abcdef");
             else
-            {
-                write(1, &str[i], 1);
-                ret++;
-            }
+				ft_putchar(str[i]);
         }
         else
-        {
-            write(1, &str[i], 1);
-            ret++;
-        }
+			ft_putchar(str[i]);
     }
     va_end(params);
     return (ret);
@@ -90,32 +74,32 @@ int     ft_printf(const char *str, ...)
 int     main(void)
 {
     //int x = 0;
-    //int x = -1;
+    //int x = -122;
     //int x = 505543;
-    //int x = UINT_MAX;
-    //
+    int x = UINT_MAX;
     //int d = INT_MIN;
     //int d = INT_MAX;
     //int d = 0;
+	//int d = 9999999999999999999;
     //int d = -25665;
     //int d = 25654;
-    //
     //char *str = "string";
-    char *str = NULL;
+    //char *str = NULL;
 
-    int ret = 0;
+    int rret;
+	int fret;
 
-    //ret = ft_printf("%x\n", x);
-    //ret = printf("%d\n", d);
-    ret = ft_printf("%%\n", str);
+    //fret = ft_printf("d = %d\n", d);
+    //rret = printf("d = %d\n", d);
+    
+	fret = ft_printf("x = %x\n", x);
+    rret = printf("x = %x\n", x);
+    
+	//fret = ft_printf("%%s%w%%w\n");
+	//rret = printf("%%s%w%%w\n");
 
-    //ret = ft_printf("%x\n", x);
-    //ret = ft_printf("%d\n", d);
-    //ret = ft_printf("%s\n", str);
-
-    //printf("%d\n", ret);
-    //printf("%d\n", ret);
-    printf("%d\n", ret);
+    //printf("ret_real : %d\n", fret);
+    //printf("ret_fake : %d\n", rret);
 
     return (0);
 }
