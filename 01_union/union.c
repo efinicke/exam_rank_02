@@ -25,7 +25,7 @@ void	ft_union(char *s1, char *s2)
 			write(1, &s1[i], 1);
 	}
 	j = -1;
-	while(s2[j++])
+	while(s2[++j])
 	{
 		if ((!seen_before(s1, i, s2[j])) && (!seen_before(s2, j, s2[j])))
 			write(1, &s2[j], 1);
